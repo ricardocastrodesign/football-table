@@ -4,11 +4,11 @@
     <template v-slot:default>
       <thead>
         <tr>
-        <!-- Remove Text-->
+          <!-- Remove Text-->
           <th class="text-left">Position</th>
           <th class="text-left">Logo</th>
           <th class="text-left">Name</th>
-        <!-- End Remove Text -->
+          <!-- End Remove Text -->
 
           <th class="text-left">Form</th>
           <th class="text-left">GP</th>
@@ -23,7 +23,22 @@
       </thead>
       <tbody>
         <tr v-for="item in standingsTable" :key="item.idStanding">
-          <td>{{ item.strTeam }}</td>
+          <td class="text-left">{{ item.intRank }}</td>
+          <td class="text-left">
+            <v-avatar>
+              <img :src="item.strTeamBadge" />
+            </v-avatar>
+          </td>
+          <td class="text-left">{{ item.strTeam }}</td>
+          <td class="text-left">{{ item.strForm }}</td>
+          <td class="text-left">{{ item.intPlayed }}</td>
+          <td class="text-left">{{ item.intWin }}</td>
+          <td class="text-left">{{ item.intDraw }}</td>
+          <td class="text-left">{{ item.intLoss }}</td>
+          <td class="text-left">{{ item.intGoalsFor }}</td>
+          <td class="text-left">{{ item.intGoalsAgainst }}</td>
+          <td class="text-left">{{ item.intGoalDifference }}</td>
+          <td class="text-left">{{ item.intPoints }}</td>
         </tr>
       </tbody>
     </template>
