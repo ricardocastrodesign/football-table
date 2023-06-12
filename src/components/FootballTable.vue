@@ -5,40 +5,40 @@
       <thead>
         <tr>
           <!-- Remove Text-->
-          <th class="text-left">Position</th>
-          <th class="text-left">Logo</th>
-          <th class="text-left">Name</th>
+          <th>Position</th>
+          <th>Logo</th>
+          <th>Name</th>
           <!-- End Remove Text -->
 
-          <th class="text-left">Form</th>
-          <th class="text-left">GP</th>
-          <th class="text-left">W</th>
-          <th class="text-left">D</th>
-          <th class="text-left">L</th>
-          <th class="text-left">GF</th>
-          <th class="text-left">GA</th>
-          <th class="text-left">GD</th>
-          <th class="text-left">Pts</th>
+          <th>Form</th>
+          <th>GP</th>
+          <th>W</th>
+          <th>D</th>
+          <th>L</th>
+          <th>GF</th>
+          <th>GA</th>
+          <th>GD</th>
+          <th>Pts</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in standingsTable" :key="item.idStanding">
-          <td class="text-left">{{ item.intRank }}</td>
-          <td class="text-left">
+          <td>{{ item.intRank }}</td>
+          <td>
             <v-avatar>
               <img :src="item.strTeamBadge" />
             </v-avatar>
           </td>
-          <td class="text-left">{{ item.strTeam }}</td>
-          <td class="text-left">{{ item.strForm }}</td>
-          <td class="text-left">{{ item.intPlayed }}</td>
-          <td class="text-left">{{ item.intWin }}</td>
-          <td class="text-left">{{ item.intDraw }}</td>
-          <td class="text-left">{{ item.intLoss }}</td>
-          <td class="text-left">{{ item.intGoalsFor }}</td>
-          <td class="text-left">{{ item.intGoalsAgainst }}</td>
-          <td class="text-left">{{ item.intGoalDifference }}</td>
-          <td class="text-left">{{ item.intPoints }}</td>
+          <td>{{ item.strTeam }}</td>
+          <td>{{ item.strForm }}</td>
+          <td>{{ item.intPlayed }}</td>
+          <td>{{ item.intWin }}</td>
+          <td>{{ item.intDraw }}</td>
+          <td>{{ item.intLoss }}</td>
+          <td>{{ item.intGoalsFor }}</td>
+          <td>{{ item.intGoalsAgainst }}</td>
+          <td>{{ item.intGoalDifference }}</td>
+          <td>{{ item.intPoints }}</td>
         </tr>
       </tbody>
     </template>
