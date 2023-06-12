@@ -38,7 +38,6 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
       <FootballTable/>
     </v-main>
   </v-app>
