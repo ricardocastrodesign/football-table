@@ -39,18 +39,19 @@
 
     <v-main>
       <HelloWorld/>
+      <FootballTable/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import FootballTable from './components/FootballTable';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    FootballTable
   },
 
   data: () => ({
