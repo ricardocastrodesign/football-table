@@ -3,13 +3,11 @@
   <v-simple-table>
     <template v-slot:default>
       <thead>
-        <tr>
-          <!-- Remove Text-->
-          <th>Position</th>
-          <th>Logo</th>
-          <th>Name</th>
-          <!-- End Remove Text -->
-
+        <tr>      
+          <th> <!-- Position --> </th>
+          <th> <!-- Logo --> </th>
+          <th> <!-- Name --> </th>   
+          
           <th>Form</th>
           <th>GP</th>
           <th>W</th>
