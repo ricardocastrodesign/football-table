@@ -3,11 +3,11 @@
   <v-simple-table>
     <template v-slot:default>
       <thead>
-        <tr>      
-          <th> <!-- Position --> </th>
-          <th> <!-- Logo --> </th>
-          <th> <!-- Name --> </th>   
-          
+        <tr>
+          <th><!-- Position --></th>
+          <th><!-- Logo --></th>
+          <th><!-- Name --></th>
+
           <th>Form</th>
           <th>GP</th>
           <th>W</th>
@@ -21,9 +21,9 @@
       </thead>
       <tbody>
         <tr v-for="item in standingsTable" :key="item.idStanding">
-          <td>{{ item.intRank }}</td>
+          <td>{{ item.intRank | twoDigits }}</td>
           <td>
-            <v-avatar>
+            <v-avatar size="32">
               <img :src="item.strTeamBadge" />
             </v-avatar>
           </td>
@@ -50,13 +50,16 @@ import axios from "axios";
 
 export default {
   name: "VueFootballTable",
-
   data() {
     return {
       standingsTable: null,
     };
   },
-
+  filters: {
+    twoDigits(value) {
+      return value.toString().padStart(2, "0");
+    },
+  },
   mounted() {
     this.getStandings();
   },
@@ -69,8 +72,6 @@ export default {
         )
         .then((response) => {
           this.standingsTable = response.data.table;
-
-          console.log(response);
         });
     },
   },
