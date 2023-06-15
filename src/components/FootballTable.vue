@@ -28,7 +28,13 @@
             </v-avatar>
           </td>
           <td>{{ item.strTeam }}</td>
-          <td>{{ item.strForm }}</td>
+          <td>
+            <template v-for="(char, index) in item.strForm">
+              <v-icon :key="index" :color="getIconBgColor(char)">
+                {{ getIcon(char) }}
+              </v-icon>
+            </template>
+          </td>
           <td>{{ item.intPlayed }}</td>
           <td>{{ item.intWin }}</td>
           <td>{{ item.intDraw }}</td>
@@ -73,6 +79,23 @@ export default {
         .then((response) => {
           this.standingsTable = response.data.table;
         });
+    },
+    getIcon(char) {
+      if (char === "W") {
+        return "mdi-checkbox-marked-circle";
+      } else if (char === "L") {
+        return "mdi-close-circle";
+      }
+      return "mdi-minus-circle";
+    },
+
+    getIconBgColor(char) {
+      if (char === "W") {
+        return "green";
+      } else if (char === "L") {
+        return "red";
+      }
+      return "grey";
     },
   },
 };
