@@ -1,7 +1,7 @@
 
 <template>
   <v-container fluid>
-    <v-simple-table class="elevation-1 v-table--mobile">
+    <v-simple-table class="elevation-1 v-table--mobile mb-2">
       <template v-slot:default>
         <thead>
           <tr>
@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in standingsTable" :key="item.idStanding">
+          <tr v-for="item in teamsLoaded" :key="item.idStanding">
             <td>{{ item.intRank | twoDigits }}</td>
             <td>
               <v-avatar size="32">
@@ -52,6 +52,9 @@
         </tbody>
       </template>
     </v-simple-table>
+
+    <v-btn v-if="loadMoreButton" @click="loadMore"> Load More </v-btn>
+    
   </v-container>
 </template>
 
@@ -64,7 +67,11 @@ export default {
   name: "VueFootballTable",
   data() {
     return {
-      standingsTable: null,
+      standingsTable: [],
+      teamLoadLength: 5,
+      teamLoadStep: 3,
+      loadMoreButton: true,
+      isLoading: false
     };
   },
   filters: {
@@ -103,6 +110,17 @@ export default {
       }
       return "grey";
     },
+    loadMore() {
+      this.teamLoadLength = this.teamLoadLength + 3;
+      if (this.teamLoadLength === this.standingsTable.length) {
+        return (this.loadMoreButton = false);
+      }
+    },
+  },
+  computed: {
+    teamsLoaded() {
+      return this.standingsTable.slice(0, this.teamLoadLength);
+    },
   },
 };
 </script>
@@ -113,13 +131,13 @@ export default {
   flex-direction: row;
   align-items: center;
 }
-@media screen and (max-width: 720px) {
+
+@media (max-width: 720px) {
   .v-table--mobile {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
-
 
   .v-table--mobile thead th:nth-child(3),
   .v-table--mobile tbody td:nth-child(3) {
