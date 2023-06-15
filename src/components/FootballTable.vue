@@ -53,8 +53,14 @@
       </template>
     </v-simple-table>
 
-    <v-btn v-if="loadMoreButton" @click="loadMore"> Load More </v-btn>
-    
+    <v-btn v-if="loadMoreButton && !isLoading" @click="loadMore">
+      Load More
+    </v-btn>
+
+    <v-skeleton-loader
+      v-if="isLoading"
+      type="list-item-avatar,list-item-avatar,list-item-avatar"
+    ></v-skeleton-loader>
   </v-container>
 </template>
 
@@ -71,7 +77,12 @@ export default {
       teamLoadLength: 5,
       teamLoadStep: 3,
       loadMoreButton: true,
-      isLoading: false
+      isLoading: false,
+      attrs: {
+        class: "mb-6",
+        boilerplate: true,
+        elevation: 1,
+      },
     };
   },
   filters: {
@@ -111,10 +122,15 @@ export default {
       return "grey";
     },
     loadMore() {
+      this.isLoading = true;
+
       this.teamLoadLength = this.teamLoadLength + 3;
       if (this.teamLoadLength === this.standingsTable.length) {
+        this.isLoading = false;
         return (this.loadMoreButton = false);
       }
+
+      this.isLoading = false;
     },
   },
   computed: {
