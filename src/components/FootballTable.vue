@@ -1,52 +1,58 @@
 
 <template>
-  <v-simple-table>
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th><!-- Position --></th>
-          <th><!-- Logo --></th>
-          <th><!-- Name --></th>
+  <v-container fluid>
+    <v-simple-table class="elevation-1">
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th><!-- Position --></th>
+            <th><!-- Logo --></th>
+            <th><!-- Name --></th>
 
-          <th>Form</th>
-          <th>GP</th>
-          <th>W</th>
-          <th>D</th>
-          <th>L</th>
-          <th>GF</th>
-          <th>GA</th>
-          <th>GD</th>
-          <th>Pts</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in standingsTable" :key="item.idStanding">
-          <td>{{ item.intRank | twoDigits }}</td>
-          <td>
-            <v-avatar size="32">
-              <img :src="item.strTeamBadge" />
-            </v-avatar>
-          </td>
-          <td>{{ item.strTeam }}</td>
-          <td>
-            <template v-for="(char, index) in item.strForm">
-              <v-icon :key="index" :color="getIconBgColor(char)">
-                {{ getIcon(char) }}
-              </v-icon>
-            </template>
-          </td>
-          <td>{{ item.intPlayed }}</td>
-          <td>{{ item.intWin }}</td>
-          <td>{{ item.intDraw }}</td>
-          <td>{{ item.intLoss }}</td>
-          <td>{{ item.intGoalsFor }}</td>
-          <td>{{ item.intGoalsAgainst }}</td>
-          <td>{{ item.intGoalDifference }}</td>
-          <td>{{ item.intPoints }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+            <th>Form</th>
+            <th>GP</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in standingsTable" :key="item.idStanding">
+            <td>{{ item.intRank | twoDigits }}</td>
+            <td>
+              <v-avatar size="32">
+                <img :src="item.strTeamBadge" />
+              </v-avatar>
+            </td>
+            <td>{{ item.strTeam }}</td>
+            <td>
+              <div class="form-icons">
+                <v-icon
+                  v-for="(char, index) in item.strForm"
+                  :key="index"
+                  :color="getIconBgColor(char)"
+                >
+                  {{ getIcon(char) }}
+                </v-icon>
+              </div>
+            </td>
+            <td>{{ item.intPlayed }}</td>
+            <td>{{ item.intWin }}</td>
+            <td>{{ item.intDraw }}</td>
+            <td>{{ item.intLoss }}</td>
+            <td>{{ item.intGoalsFor }}</td>
+            <td>{{ item.intGoalsAgainst }}</td>
+            <td>{{ item.intGoalDifference }}</td>
+            <td>{{ item.intPoints }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+  </v-container>
 </template>
 
 
@@ -102,4 +108,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 </style>
