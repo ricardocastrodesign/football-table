@@ -1,7 +1,7 @@
 
 <template>
   <v-container fluid>
-    <v-simple-table class="elevation-1">
+    <v-simple-table class="elevation-1 v-table--mobile">
       <template v-slot:default>
         <thead>
           <tr>
@@ -113,5 +113,20 @@ export default {
   flex-direction: row;
   align-items: center;
 }
+@media screen and (max-width: 720px) {
+  .v-table--mobile {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
+
+  .v-table--mobile thead th:nth-child(3),
+  .v-table--mobile tbody td:nth-child(3) {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+  }
+}
 </style>
