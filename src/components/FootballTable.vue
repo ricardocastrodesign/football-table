@@ -95,14 +95,15 @@ export default {
   },
 
   methods: {
-    getStandings() {
-      axios
-        .get(
-          "https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021"
-        )
-        .then((response) => {
-          this.standingsTable = response.data.table;
-        });
+    async getStandings() {
+      try {
+        const response = await axios.get(
+            "https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021"
+          )
+        this.standingsTable = response.data.table;
+      } catch (error) {
+        console.error("Error fetching standings:", error);
+      }       
     },
     getIcon(char) {
       if (char === "W") {
